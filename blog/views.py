@@ -44,12 +44,12 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
 
-class Post_API_list(APIView):
-    def get(self,request):
-        API_posts = Post.objects.all()
-        serializer = PostSerializer(API_posts , many=True)
-        return Response(serializer.data)
+#class Post_API_list(APIView):
+    #def get(self,request):
+        #API_posts = Post.objects.all()
+        #serializer = PostSerializer(API_posts , many=True)
+        #return Response(serializer.data)
 
-    def post(self):
-        pass
+    #def post(self):
+        #pass
 

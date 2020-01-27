@@ -21,6 +21,6 @@ from rest_framework.urlpatterns import format_suffix_patterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('blog.urls')),
-    path('api/',views.Post_API_list.as_view()),
+    #path('api/',views.Post_API_list.as_view()),
 ]
-urlpatterns = format_suffix_patterns(urlpatterns)
+#urlpatterns = format_suffix_patterns(urlpatterns)
