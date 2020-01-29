@@ -8,7 +8,6 @@ from django.contrib.auth import login as auth_login,logout
 from django.contrib.auth import authenticate
 from django.http import HttpResponseRedirect
 from django.template.context_processors import csrf
-from django.shortcuts import render_to_response
 from .utility import *
 from django.urls import reverse 
 #from rest_framework.views import APIView
