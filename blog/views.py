@@ -1,8 +1,16 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from .models import Post
 from django.utils import timezone
-from .forms import PostForm
+from .forms import PostForm,RegForm,LoginForm
 from django.shortcuts import redirect
+from django.views.generic import View
+from django.contrib.auth import login as auth_login,logout
+from django.contrib.auth import authenticate
+from django.http import HttpResponseRedirect
+from django.template.context_processors import csrf
+from django.shortcuts import render_to_response
+from .utility import *
+from django.urls import reverse 
 #from rest_framework.views import APIView
 #from rest_framework.response import Response
 #from rest_framework import status
@@ -52,4 +60,50 @@ def post_edit(request, pk):
 
     #def post(self):
         #pass
+
+class RegFormview(View):
+
+    def post(self,request):
+        form = RegForm(request.POST)
+        if form.is_valid():
+            user=form.save(commit=False)
+            username=form.cleaned_data['username']
+            password=form.cleaned_data['password']
+            user.set_password(password)
+            user.save()
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                auth_login(request=request, user=user)
+                return HttpResponseRedirect(reverse('post_list'))
+        msg_to_html = custom_message('Invalid Credentials', TagType.danger)
+        dictionary = dict(request=request, messages = msg_to_html)
+        dictionary.update(csrf(request))
+        return render_to_response('blog/post_list.html', dictionary)
+
+  
+def LoginFormview(request):
+     if request.method == 'POST':
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            auth_login(request=request, user=user)
+            return HttpResponseRedirect(reverse('post_list'))
+        else:
+            msg_to_html = custom_message('Invalid Credentials', TagType.danger)
+            dictionary = dict(request=request, messages = msg_to_html)
+            dictionary.update(csrf(request))
+        return render_to_response('blog/post_list.html', dictionary)
+    
+def Logout_view(request):
+    logout(request)
+    return redirect('post_list')
+
+def main_base(request):
+    dictionary = dict(request=request)
+    dictionary.update(csrf(request))
+    return render_to_response('blog/base.html', dictionary)
+
+    
+
 
