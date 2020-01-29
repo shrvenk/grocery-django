@@ -11,48 +11,128 @@
     <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <style type="text/css">
-    .lion{
-        padding-top: 0px;
-        padding-bottom: 0px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-    }
-    lion>span{
-        font-size: 20px;
-        padding-top: 0px;
-        padding-bottom: 0px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-    }
-    small{
-        font-size: 15px;
-    }
-    .log_out>form{
+    
+.content {
+    margin-left: 40px;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Lobster', cursive;
+}
+
+.date {
+    color: #828282;
+}
+
+.save {
+    float: right;
+}
+
+.post-form textarea, .post-form input {
+    width: 100%;
+}
+
+.post {
+    margin-bottom: 70px;
+}
+
+.post h2 a, .post h2 a:visited {
+    color: #000000;
+}
+li>a {
+    color: black;
+    font-size : 12pt;
+}
+.navbar-brand{
+    font-size :25pt;
+    color:white;
+    font-weight:bold;
+    font-family:'DFPOP1-W9';
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.navbar-brand:hover{
+    color:black;
+    font-weight:bold;
+    font-family:'DFPOP1-W9';
+}
+.navbar-toggle>span{
+     background-color:black;
+}
+.active{
+     background-color:#bba0e2;
+}
+.dropdown-menu{
+        width: 600px;
+        height: 300px;
+}
+.check{
+        align-items: center;
+}
+.sign_in,.create_account{
         display: flex;
         justify-content: center;
         text-align:center;
         align-items: center;
-        margin-top: 5pt;
-        margin-bottom: 15pt;
-    }
-    .log_out>form>button{
+        margin-top: 10pt;
+}
+.sign_in>button{
         padding-left: 50pt;
         padding-right: 50pt;
-    }
-    .thank_you{
-        text-align: center;
-    }
-    .nav-line-1{
-        font-size: 20px;
-        font-weight: bold;
-        font-family: 'Exotc350 DmBd BT';
-    }
-    .navbar-header{
-        align-items: center;
-    }
-    .alert-box>div{
-        text-align: center;
-    }
+}
+.row{
+        margin-left: 50px;
+        margin-right: 10px;
+        margin-top: 10px;
+}
+.list{
+        padding-left: 3px;
+}
+.list>li>a{
+        font-size: 14px;
+}
+.lion{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+lion>span{
+    font-size: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+small{
+    font-size: 15px;
+}
+.log_out>form{
+    display: flex;
+    justify-content: center;
+    text-align:center;
+    align-items: center;
+    margin-top: 5pt;
+    margin-bottom: 15pt;
+}
+.log_out>form>button{
+    padding-left: 50pt;
+    padding-right: 50pt;
+}
+.thank_you{
+    text-align: center;
+}
+.nav-line-1{
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Exotc350 DmBd BT';
+}
+.navbar-header{
+    align-items: center;
+}
+.alert-box>div{
+    text-align: center;
+}
     </style>
 </head>
 <body>
