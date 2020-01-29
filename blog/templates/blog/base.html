@@ -9,6 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Bangers&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <style type="text/css">
     
@@ -54,15 +56,13 @@ li>a {
 .navbar-brand{
     font-size :25pt;
     color:white;
-    font-weight:bold;
-    font-family:'DFPOP1-W9';
+    font-family: 'Indie Flower', cursive;
     padding-left: 50px;
     padding-right: 50px;
 }
 .navbar-brand:hover{
     color:black;
-    font-weight:bold;
-    font-family:'DFPOP1-W9';
+    font-family: 'Indie Flower', cursive;
 }
 .navbar-toggle>span{
      background-color:black;
@@ -149,11 +149,11 @@ lion>span{
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="{%url 'post_list'%}" class="navbar-brand">SHRVENK</a>
+            <a href="{%url 'post_list'%}" class="navbar-brand">Shrvenk</a>
         </div>
         <div class="collapse navbar-collapse" id="bar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a> </li>
+                <li {%block activity%}{%endblock%}><a href="{%url 'post_list'%}">Home</a> </li>
                 <li ><a href="#">About</a> </li>
                 <li ><a href="#">Contact</a> </li>
             </ul>

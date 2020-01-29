@@ -92,7 +92,7 @@ def LoginFormview(request):
             msg_to_html = custom_message('Invalid Credentials', TagType.danger)
             dictionary = dict(request=request, messages = msg_to_html)
             dictionary.update(csrf(request))
-        return render(request,'blog/post_list.html', dictionary)
+        return render(request,'blog/base.html', dictionary)
     
 def Logout_view(request):
     logout(request)
