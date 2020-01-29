@@ -78,7 +78,7 @@ class RegFormview(View):
         msg_to_html = custom_message('Invalid Credentials', TagType.danger)
         dictionary = dict(request=request, messages = msg_to_html)
         dictionary.update(csrf(request))
-        return render_to_response('blog/post_list.html', dictionary)
+        return render(request,'blog/post_list.html', dictionary)
 
   
 def LoginFormview(request):
@@ -93,7 +93,7 @@ def LoginFormview(request):
             msg_to_html = custom_message('Invalid Credentials', TagType.danger)
             dictionary = dict(request=request, messages = msg_to_html)
             dictionary.update(csrf(request))
-        return render_to_response('blog/post_list.html', dictionary)
+        return render(request,'blog/post_list.html', dictionary)
     
 def Logout_view(request):
     logout(request)
@@ -102,7 +102,7 @@ def Logout_view(request):
 def main_base(request):
     dictionary = dict(request=request)
     dictionary.update(csrf(request))
-    return render_to_response('blog/base.html', dictionary)
+    return render(request,'blog/base.html', dictionary)
 
     
 
