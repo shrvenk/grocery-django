@@ -1,4 +1,5 @@
 {% load static %}
+{%load poll_extras%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,139 +10,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Bangers&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Bangers&display=swap" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/blog.css' %}">
     <style type="text/css">
-    
-.content {
-    margin-left: 40px;
-}
-h1, h2, h3, h4 {
-    font-family: 'Lobster', cursive;
-}
-
-.date {
-    color: #828282;
-    font-size: 13px;
-}
-small{
-    font-size: 13px;
-}
-.publish{
-    color: black;
-}
-.author{
-    color: red;
-}
-.save {
-    float: right;
-}
-
-.post-form textarea, .post-form input {
-    width: 100%;
-}
-
-.post {
-    margin-bottom: 70px;
-}
-
-.post h2 a, .post h2 a:visited {
-    color: #000000;
-}
-li>a {
-    color: black;
-    font-size : 12pt;
-}
-.navbar-brand{
-    font-size :25pt;
-    color:white;
-    font-family: 'Indie Flower', cursive;
-    padding-left: 50px;
-    padding-right: 50px;
-}
-.navbar-brand:hover{
-    color:black;
-    font-family: 'Indie Flower', cursive;
-}
-.navbar-toggle>span{
-     background-color:black;
-}
-.active{
-     background-color:#bba0e2;
-}
-.dropdown-menu{
-        width: 600px;
-        height: 300px;
-}
-.check{
-        align-items: center;
-}
-.sign_in,.create_account{
-        display: flex;
-        justify-content: center;
-        text-align:center;
-        align-items: center;
-        margin-top: 10pt;
-}
-.sign_in>button{
-        padding-left: 50pt;
-        padding-right: 50pt;
-}
-.row{
-        margin-left: 50px;
-        margin-right: 10px;
-        margin-top: 10px;
-}
-.list{
-        padding-left: 3px;
-}
-.list>li>a{
-        font-size: 14px;
-}
-.lion{
-    padding-top: 0px;
-    padding-bottom: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-lion>span{
-    font-size: 20px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-.log_out>form{
-    display: flex;
-    justify-content: center;
-    text-align:center;
-    align-items: center;
-    margin-top: 5pt;
-    margin-bottom: 15pt;
-}
-.log_out>form>button{
-    padding-left: 50pt;
-    padding-right: 50pt;
-}
-.thank_you{
-    text-align: center;
-}
-.nav-line-1{
-    font-size: 20px;
-    font-weight: bold;
-    font-family: 'Exotc350 DmBd BT';
-}
-.navbar-header{
-    align-items: center;
-}
-.alert-box>div{
-    text-align: center;
-}
+         
     </style>
+    {%block stl%}
+    {%endblock%}
 </head>
 <body>
-<nav class="navbar navbar-dark" style="background-color:#8760c1;">
+<nav class="navbar navbar-dark py-0" style="background-color:#8760c1;">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bar">
@@ -162,7 +42,7 @@ lion>span{
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="nav-a nav-a-2 nav-truncate">
                         <span class="nav-line-2">Account<span class="caret"></span></span>
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu acc">
                         {%if request.user.is_authenticated %}
                         <li class="thank_you">
                             {% if request.user.get_username %}
@@ -187,7 +67,7 @@ lion>span{
                         {%endif%}
                         <div class="row">
                             <div class="col-md-5"></div>
-                            <div class="col-md-7" style="background-color:#f3f0f5;">
+                            <div class="col-md-6" style="background-color:#f3f0f5;">
                                 <ul class="list">
                                 <li><a href="#">Profile</a></li>
                                 <li><a href="#">Profile</a></li>
@@ -202,8 +82,38 @@ lion>span{
                         </div>  
                     </ul>
                 </li>
+                
+                <li class="dropdown clr">
+                    <a href="#" class="dropdown-toggle prb" data-toggle="dropdown" class="nav-a nav-a-2 nav-truncate">
+                        <i class="fa fa-shopping-cart" style="font-size:25px;color:red"></i>
+                        <span class="items"> Items:{%block cart%}{%endblock%}</span>
+                    </a>
+                    <ul class="dropdown-menu mnu">
+                        {%if cart_no == 0%}
+                        <div class="row">
+                            <div class="col con">
+                           <small class="empty">Empty</small>
+                           </div>
+                        </div>
+                        {%else%}
+                        {%for key,value in cart_details.items%}
+                        <div class="row yup2">
+                            <form role="form" method="POST" action="{%url 'remove_cart_dropdown' val=key %}" class="post-form">{% csrf_token %}
+                                <div class="col-md-9 yup bdr">
+                                <a href="#" class="list-group-item"> {{key}} x {{value}} </a>
+                                </div>
+                                <div class="col-md-1 yupn">
+                                    <button type="submit" class="btn lt bt"><i class="fa fa-minus"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        {%endfor%}
+                        {%endif%}
+                    </ul>
+                </li>
                 <li>
                     {%if request.user.is_authenticated %}
+                    
                     <a href="{% url 'post_new' %}" class="lion"><span class="glyphicon glyphicon-plus-sign"></a>
                     {% endif %}
                 </li>
@@ -260,7 +170,8 @@ lion>span{
         </div>
     </div>
 </nav>
-<div class="content container">
+{% block home %}
+<div class="container-fluid">
     <div class="row">
         {% if messages %}
                 {% block messages %}
@@ -271,11 +182,13 @@ lion>span{
                 </div>
                 {% endblock %}
         {% endif %}
-        <div class="col-md-8">
+        <div class="col-md-8 col-md-push-1">
             {% block content %}
             {% endblock %}
         </div>
     </div>
 </div>
+
+{% endblock %}
 </body>
 </html>

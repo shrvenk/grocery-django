@@ -16,3 +16,10 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+class Product_detail(models.Model):
+    name = models.CharField(max_length=100)
+    img = models.ImageField(null=True)
+    details = models.TextField(max_length=100,null=True)
+    quantity = models.CharField(max_length=20,null=True)
+    price = models.IntegerField()

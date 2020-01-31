@@ -26,11 +26,5 @@ from django.contrib.auth import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('blog.urls')),
-    url(r'^logout/',views.auth_logout,{'next_page':'/'},name='logout'),
-    #path('api/',views.Post_API_list.as_view()),
 ]
-#urlpatterns = format_suffix_patterns(urlpatterns)
-
-if settings.DEBUG:
-    urlpatterns+=static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
-    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

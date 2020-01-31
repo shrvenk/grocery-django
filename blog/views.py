@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404,redirect
-from .models import Post
+from .models import Post,Product_detail
 from django.utils import timezone
 from .forms import PostForm,RegForm,LoginForm
 from django.shortcuts import redirect
@@ -16,6 +16,10 @@ from django.urls import reverse
 #from .serializers import PostSerializer
 
 # Create your views here.
+
+cart_no=0
+cart_details={}
+cart_Ids=[]
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     return render(request, 'blog/post_list.html', {'posts':posts})
@@ -103,6 +107,41 @@ def main_base(request):
     dictionary.update(csrf(request))
     return render(request,'blog/base.html', dictionary)
 
+def home(request):
+    global cart_details
+    global cart_no
+    global cart_Ids
+    cart_no=len(cart_details)
+    products = Product_detail.objects.all()
+    return render(request,'blog/home.html',{'products':products,'cart_no':cart_no,'cart_details':cart_details,'cart_Ids':cart_Ids})
+
+def cart(request,pk):
+    if request.method=='POST':
+        global cart_details
+        global cart_Ids
+        detail =get_object_or_404(Product_detail, pk=pk)
+        cart_Ids.append(pk)
+        cart_details[detail.details]=request.POST.get("quantity")
+        return redirect(reverse('home'))
     
+def remove_cart(request,pk):
+    if request.method=='POST':
+        global cart_details
+        global cart_Ids
+        detail =get_object_or_404(Product_detail, pk=pk)
+        del cart_details[detail.details]
+        cart_Ids.remove(pk)
+        return redirect(reverse('home'))
+
+def remove_cart_dropdown(request,val):
+    if request.method=='POST':
+        global cart_details
+        global cart_Ids
+        detail = get_object_or_404(Product_detail,details=val)
+        del cart_details[val]
+        cart_Ids.remove(detail.pk)
+        return redirect(reverse('home'))
+
+
 
 

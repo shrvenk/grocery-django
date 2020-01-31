@@ -10,4 +10,8 @@ path('reg/',views.RegFormview.as_view(),name='Reg'),
 path('login/',views.LoginFormview,name='Login'),
 path('logout/',views.Logout_view,name='logout'),
 path('main_base/',views.main_base,name='main_base'),
+path('home/',views.home,name='home'),
+path('cart/<int:pk>/',views.cart,name='cart'),
+path('remove_cart/<int:pk>/',views.remove_cart,name='remove_cart'),
+path('remove_cart_dropdown/<str:val>/',views.remove_cart_dropdown,name='remove_cart_dropdown'),
 ]
