@@ -33,7 +33,7 @@
         </div>
         <div class="collapse navbar-collapse" id="bar">
             <ul class="nav navbar-nav">
-                <li {%block activity%}{%endblock%}><a href="{%url 'post_list'%}">Home</a> </li>
+                <li {%block activity%}{%endblock%}><a href="{%url 'home'%}">Home</a> </li>
                 <li ><a href="#">About</a> </li>
                 <li ><a href="#">Contact</a> </li>
             </ul>
@@ -96,6 +96,12 @@
                            </div>
                         </div>
                         {%else%}
+                        <li class="log_out">
+                            <form action="{%url 'buy'%}" method="post" class="form-inline my-2 my-lg-0">
+                                {% csrf_token %}
+                                <button class="btn btn-danger my-2 my-sm-0" type="submit">Buy</button>
+                            </form>
+                        </li>
                         {%for key,value in cart_details.items%}
                         <div class="row yup2">
                             <form role="form" method="POST" action="{%url 'remove_cart_dropdown' val=key %}" class="post-form">{% csrf_token %}

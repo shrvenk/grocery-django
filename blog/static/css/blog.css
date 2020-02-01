@@ -149,8 +149,8 @@ lion>span{
     margin-bottom: 5px;
     margin-top: 5px;
     margin-right: 5px;
-    border: 3px solid #8760c1;
-    border-radius: 7px;
+    border: 1px solid #8760c1;
+    border-radius: 3px;
 }
 .mnu{
     background-color: #ffffff;

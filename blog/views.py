@@ -142,6 +142,26 @@ def remove_cart_dropdown(request,val):
         cart_Ids.remove(detail.pk)
         return redirect(reverse('home'))
 
+def buy(request):
+        global cart_details
+        global cart_no
+        global cart_Ids
+        getsum = 0
+        cart_no=len(cart_details)
+        products = Product_detail.objects.all()
+        for key,value in cart_details.items():
+            getp=get_object_or_404(Product_detail, details=key)
+            getsum+=int(getp.price)*int(value)
+        return render(request,'blog/buy.html',{'products':products,'cart_no':cart_no,'cart_details':cart_details,'cart_Ids':cart_Ids,'getsum':getsum})
 
-
+def remove_mycart(request,val):
+        global cart_details
+        global cart_Ids
+        global cart_no
+        detail = get_object_or_404(Product_detail,details=val)
+        products = Product_detail.objects.all()
+        del cart_details[val]
+        cart_Ids.remove(detail.pk)
+        cart_no=len(cart_details)
+        return redirect('buy')
 

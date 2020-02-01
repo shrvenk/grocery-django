@@ -1,0 +1,83 @@
+{%extends 'blog/base.html'%}
+{% load static %}
+{%load poll_extras%}
+{%block cart%}
+{{cart_no}}
+{%endblock%}
+
+{%block stl%}
+<style type="text/css">
+.check_item{
+    width: 55%;
+    text-align: center;
+    border: 3px solid white;
+}
+.check_price,.check_subtotal{
+    width: 15%;
+    text-align: center;
+    border: 3px solid white;
+}
+.check_quantity{
+    width: 15%;
+    text-align: center;
+    border: 3px solid white;
+}
+.thd{
+    background-color: rgb(39, 38, 38);
+    color: white;
+}
+
+.midt{
+    text-align: center;
+    border-bottom: 3px solid black;
+}
+.midk{
+    border-bottom: 3px solid black;
+}
+.subt{
+    font-size: 40px;
+    color: rgb(92, 27, 16);
+}
+.aln{
+    text-align: right;
+    padding-right: 10px;
+}
+</style>
+{%endblock%}
+
+{%block home%}
+<div class="row">
+    <div class="col-md-10 col-md-push-1">
+        <h3>My Cart</h3>
+        <table class="table">
+            <thead>
+                <tr class="thd">
+                    <th class="check_item">Item</th>
+                    <th class="check_price">Price</th>
+                    <th class="check_quantity">Quantity</th>
+                    <th class="check_subtotal">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for key,value in cart_details.items%}
+                {%for temp in products|in_category:key%}
+                <tr>
+                    <td class='midk'>{{key}}<a href="{%url 'remove_mycart' val=key %}" class="close">&times;</a></td>
+                    
+                    <td class="midt">{{temp.price}}</td>
+                    <td class="midt">{{value}}</td>
+                    <td class="midt">Rs. {{temp.price|multiply:value}}</td>
+                </tr>
+                {%endfor%}
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-md-push-7 aln">
+        <span class="subt">Total : Rs. {{getsum}}</span>
+    </div>
+</div>
+
+{%endblock%}
