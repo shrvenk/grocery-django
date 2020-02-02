@@ -14,3 +14,7 @@ def in_category(things, category):
 @register.filter
 def multiply(value, arg):
     return int(value) * int(arg)
+
+@register.filter
+def get(value,arg):
+    return value.arg

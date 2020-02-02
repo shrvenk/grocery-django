@@ -53,8 +53,8 @@ li>a {
      background-color:#bba0e2;
 }
 .acc{
-        width: 600px;
-        height: 300px;
+        width: 400px;
+        height: 150px;
 }
 .check{
         align-items: center;
@@ -70,25 +70,11 @@ li>a {
         padding-left: 50pt;
         padding-right: 50pt;
 }
-
 .list{
         padding-left: 3px;
 }
 .list>li>a{
         font-size: 14px;
-}
-.lion{
-    padding-top: 0px;
-    padding-bottom: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-lion>span{
-    font-size: 20px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
 }
 .log_out>form{
     display: flex;

@@ -13,9 +13,13 @@
     <link href="https://fonts.googleapis.com/css?family=Bangers&display=swap" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/blog.css' %}">
     <style type="text/css">
-         
+    .acc{
+        width: 400px;
+        height: 150px;
+    }
     </style>
     {%block stl%}
     {%endblock%}
@@ -29,13 +33,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="{%url 'post_list'%}" class="navbar-brand">Shrvenk</a>
+            <a href="{%url 'home'%}" class="navbar-brand">Shrvenk</a>
         </div>
         <div class="collapse navbar-collapse" id="bar">
             <ul class="nav navbar-nav">
-                <li {%block activity%}{%endblock%}><a href="{%url 'home'%}">Home</a> </li>
-                <li ><a href="#">About</a> </li>
-                <li ><a href="#">Contact</a> </li>
+                <li {%block activity_home%}{%endblock%}><a href="{%url 'home'%}">Home</a> </li>
+                <li {%block activity_posts%}{%endblock%}><a href="{%url 'post_list'%}">Posts</a> </li>
+                <li {%block activity_contact%}{%endblock%}><a href="{%url 'contact'%}">Contact</a> </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -65,21 +69,17 @@
                             <h5>New to Shrvenk ?<a href="" data-toggle="modal" data-target="#create_account">Create Account</a></h5>
                         </li> 
                         {%endif%}
+                        {%if request.user.is_authenticated %}
                         <div class="row">
                             <div class="col-md-5"></div>
                             <div class="col-md-6" style="background-color:#f3f0f5;">
                                 <ul class="list">
-                                <li><a href="#">Profile</a></li>
-                                <li><a href="#">Profile</a></li>
-                                <li><a href="#">Profile</a></li>
-                                <li><a href="#">Profile</a></li>
-                                <li><a href="#">Profile</a></li>
-                                <li><a href="#">Profile</a></li>
-                                <li><a href="#">Profile</a></li>
-                                <li><a href="#">Profile</a></li>
+                                <li><a href="{%url 'profile'%}">Profile</a></li>
+                                <li><a href="{%url 'my_order'%}">My Orders</a></li>
                                 </ul>
                             </div>
-                        </div>  
+                        </div> 
+                        {%endif%} 
                     </ul>
                 </li>
                 
@@ -117,12 +117,14 @@
                         {%endif%}
                     </ul>
                 </li>
+                <!--
                 <li>
                     {%if request.user.is_authenticated %}
                     
                     <a href="{% url 'post_new' %}" class="lion"><span class="glyphicon glyphicon-plus-sign"></a>
                     {% endif %}
                 </li>
+            -->
             </ul>
         </div>
         <div class="modal fade" id="sign_in">
@@ -188,7 +190,7 @@
                 </div>
                 {% endblock %}
         {% endif %}
-        <div class="col-md-8 col-md-push-1">
+        <div class="col-md-8 col-md-push-2 in_post_list">
             {% block content %}
             {% endblock %}
         </div>

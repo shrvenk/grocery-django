@@ -16,4 +16,8 @@ path('remove_cart/<int:pk>/',views.remove_cart,name='remove_cart'),
 path('remove_cart_dropdown/<str:val>/',views.remove_cart_dropdown,name='remove_cart_dropdown'),
 path('buy/',views.buy,name='buy'),
 path('remove_mycart/<str:val>/',views.remove_mycart,name='remove_mycart'),
+path('checkout/',views.checkout,name='checkout'),
+path('profile/',views.profile,name='profile'),
+path('my_order/',views.my_order,name='my_order'),
+path('contact/',views.contact,name='contact')
 ]

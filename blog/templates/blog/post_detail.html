@@ -1,4 +1,8 @@
 {% extends 'blog/base.html' %}
+{%load poll_extras%}
+{%block cart%}
+{{cart_no}}
+{%endblock%}
 
 {% block content %}
     <div class="post">

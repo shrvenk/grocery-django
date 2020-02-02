@@ -23,3 +23,22 @@ class Product_detail(models.Model):
     details = models.TextField(max_length=100,null=True)
     quantity = models.CharField(max_length=20,null=True)
     price = models.IntegerField()
+
+class checkout_detail(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    address = models.TextField()
+    pincode = models.IntegerField(max_length=6)
+    contact = models.IntegerField()
+    time = models.DateTimeField(blank=True,null=True)
+    order = models.TextField(null=True)
+    total = models.IntegerField(null=True)
+
+    def publish(self):
+        self.time = timezone.now()
+        self.save()
+
+
+
+
+

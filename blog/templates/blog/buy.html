@@ -42,6 +42,34 @@
     text-align: right;
     padding-right: 10px;
 }
+.ck{
+    align-items: flex-start;
+}
+.glyphicon-menu-right{
+    font-size: 30px;
+}
+.checkout_box{
+    padding-top: 8px;
+    padding-left: 15px;
+    padding-right: 0px;
+}
+.checkout_icon{
+    padding:0px;
+    padding-left: 10px;
+}
+.sign_in2{    
+    margin-top: 15px;
+    margin-bottom: 0px;
+    margin-right: 20px;
+}
+.createa{
+    margin-top: 0px;
+    margin-right: 45px;
+}
+.sign_in2>button{
+        padding-left: 50pt;
+        padding-right: 50pt;
+}
 </style>
 {%endblock%}
 
@@ -76,7 +104,33 @@
 </div>
 <div class="row">
     <div class="col-md-4 col-md-push-7 aln">
-        <span class="subt">Total : Rs. {{getsum}}</span>
+        <span class="subt">Total : Rs. {{getsum}}</span><br>
+        {%if request.user.is_authenticated%}
+        <form role="form" action="{%url 'checkout'%}"method="POST" class="frm">{%csrf_token%}
+            <button class="btn btn-success" type="submit" id="checkout">
+            <div class="row ck">
+                <div class="col-md-6 checkout_box">
+                <span class="checkout">CHECKOUT</span>
+                </div>
+                <div class="col-md-6 checkout_icon">
+                <span class="glyphicon glyphicon-menu-right"></span>
+                </div>
+            </div>
+            </button>
+        </form>
+        </div>
+        {%else%}
+        <div class="row">
+        <li class="sign_in2" >
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#sign_in">
+                Sign In & Checkout
+            </button>   
+        </li>
+        <li class="createa"> 
+            <h5>New to Shrvenk ?<a href="" data-toggle="modal" data-target="#create_account">Create Account</a></h5>
+        </li>
+        </div> 
+        {%endif%}
     </div>
 </div>
 
